@@ -49,6 +49,11 @@ def prog():
     window.after(3000, show_img)
 
 
+def clean():
+    tabs = notebook.tabs()
+    for tab in tabs:
+        notebook.forget(tab)
+
 window = Tk()
 window.title('Картинки с собачками')
 window.geometry('360x420')
@@ -56,9 +61,13 @@ window.geometry('360x420')
 label = ttk.Label()
 label.pack(pady=10)
 
-button = ttk.Button(text='Загрузить изображение', command=prog)
-button.pack(pady=10)
 
+frames = Frame(window)
+frames.pack()
+button = ttk.Button(frames, text='Загрузить изображение', command=prog)
+button.pack(side=LEFT, pady=10, padx=5)
+clean_button = ttk.Button(frames, text='Очистить вкладки', command=clean)
+clean_button.pack(side=LEFT, pady=10, padx=5)
 
 progress = ttk.Progressbar(mode='determinate', length=300)
 progress.pack(pady=10)
